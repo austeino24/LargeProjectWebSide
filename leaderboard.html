@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>   
+<head>
+    <title>POOP Big Project Leaderboards</title>   
+    <link rel="stylesheet" type="text/css" href="globalStyles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/code.js"></script>
+    
+
+    
+</head>
+
+<body>
+    
+    <script>
+        window.onload = function(){ 
+            var header = document.getElementById("headers");
+            var leaderboard = document.getElementById("leaderboard");
+        };
+        
+        var numBlocks = 1;
+        
+        function createNewBlock() {
+            var newBlock = document.createElement('div');
+            newBlock.className = "lbBlock";
+            //append the rest of the header stuff here
+            
+            if(numBlocks % 2 !== 0)
+                newBlock.style.color = "blue";
+            
+            leaderboard.appendChild(newBlock);
+            numBlocks++;
+        };
+        
+        function resetAllBlocks() {
+            var tmp = leaderboard.childNodes;
+            for(var i = tmp.length-1; i > 1; i--)
+            {
+                    leaderboard.removeChild(tmp[i]);
+                    numBlocks --;
+            }
+                
+        };
+    
+    </script>
+    
+    <div class="outer">
+        <div class="middle">
+            <div class="inner" id="leaderboardOverlay">
+
+                <h1 style="color: white;text-align: center">AR Defense Leaderboards for: Test</h1>
+                
+                <div id="leaderboard">
+                    <div id="headers" class="lbBlock">
+                        <button onClick="createNewBlock()">Add a part</button>
+                        <button onClick="resetAllBlocks()">Delete errything</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
