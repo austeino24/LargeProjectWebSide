@@ -19,14 +19,35 @@
         };
         
         var numBlocks = 1;
+        var leaders = [new Leader("Jad", 4453, "4/1/2018"), 
+            new Leader("James", 510, "3/10/2018"),
+            new Leader("Tyler", 210, "3/8/2018")];
         
-        function createNewBlock() {
+        function createNewBlock(l) {
             var newBlock = document.createElement('div');
-            newBlock.className = "lbBlock";
-            //append the rest of the header stuff here
             
             if(numBlocks % 2 !== 0)
-                newBlock.style.color = "blue";
+                newBlock.className = "lbBlock2";
+            else
+                newBlock.className = "lbBlock";
+            
+            //append the rest of the header stuff here
+            
+            var nameCol = document.createElement('div');
+            nameCol.className = "col";
+            nameCol.innerHTML = l.name;
+            
+            var scoreCol = document.createElement('div');
+            scoreCol.className = "scoreCol";
+            scoreCol.innerHTML = l.score;
+            
+            var dateCol = document.createElement('div');
+            dateCol.className = "col";
+            dateCol.innerHTML = l.date;
+            
+            newBlock.appendChild(nameCol);
+            newBlock.appendChild(scoreCol);
+            newBlock.appendChild(dateCol);
             
             leaderboard.appendChild(newBlock);
             numBlocks++;
@@ -37,9 +58,20 @@
             for(var i = tmp.length-1; i > 1; i--)
             {
                     leaderboard.removeChild(tmp[i]);
-                    numBlocks --;
             }
                 
+            numBlocks = 1;
+        };
+        
+        function loadInData() {
+            for(var i = 0; i < leaders.length; i++)
+                    createNewBlock(leaders[i]);
+        };
+        
+        function Leader(name, score, date) {
+            this.name = name;
+            this.score = score;
+            this.date = date;
         };
     
     </script>
@@ -50,10 +82,14 @@
 
                 <h1 style="color: white;text-align: center">AR Defense Leaderboards for: Test</h1>
                 
+                <button onClick="loadInData()">Load in Test Data</button>
+                <button onClick="resetAllBlocks()">Delete errything</button>
+                
                 <div id="leaderboard">
                     <div id="headers" class="lbBlock">
-                        <button onClick="createNewBlock()">Add a part</button>
-                        <button onClick="resetAllBlocks()">Delete errything</button>
+                        <div class="col">Name</div>
+                        <div class="scoreCol">Score</div>
+                        <div class="col">Date</div>
                     </div>
                 </div>
 

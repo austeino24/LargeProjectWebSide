@@ -1,3 +1,4 @@
+
 body {
    background-image: url("https://media.giphy.com/media/5qVezULI35guQ/giphy.gif");
    background-size: cover;
@@ -40,7 +41,7 @@ body {
     padding: 20px;
     font-family: verdana;
     font-size: 150%;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     display: flex;
     flex-direction: column;
 }
@@ -59,12 +60,54 @@ body {
 
 .lbBlock {
     background-color: rgba(48,165,171, 0.8);
-    height: 5%;
+    height: 7.5%;
     margin: auto;
-    padding: 20px;
     font-family: verdana;
     font-size: 50%;
     overflow-y: auto;
+    display: -webkit-flex;
+    -webkit-flex-direction: row;
+    display: flex;
+    flex-direction: row;
+}
+
+.lbBlock2 {
+    background-color: rgba(128, 176, 178, 0.8);
+    height: 7.5%;
+    margin: auto;
+    font-family: verdana;
+    font-size: 50%;
+    overflow-y: auto;
+    display: -webkit-flex;
+    -webkit-flex-direction: row;
+    display: flex;
+    flex-direction: row;
+}
+
+.lbBlock:hover {
+    background-color: rgba(39, 125, 130, 0.8);
+}
+
+.lbBlock2:hover {
+    background-color: rgba(88, 123, 124, 0.8);
+}
+
+.scoreCol{
+    border-right: solid; 
+    border-left: solid;
+    flex: 33%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.col {
+    flex: 33%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 form {
