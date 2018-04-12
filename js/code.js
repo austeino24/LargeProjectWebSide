@@ -12,35 +12,28 @@ $.getScript("http://www.myersdaily.org/joseph/javascript/md5.js");
 
 window.onload = function()
 { 
-    if(read_cookie(user) === null)
-        bake_cookie(user, "");
-    else if(read_cookie(user) === "");
+    if(localStorage.getItem(user) === null)
+        localStorage.setItem(user, "");
+    else if(localStorage.getItem(user) === "");
     else
     {
         var s = document.getElementById("s");
         var l = document.getElementById("l");
+        var t = l.cloneNode(true);
+        
+        t.innerHTML = "Logout";
+        t.onclick = function() { 
+            localStorage.setItem(user, ""); 
+        };
         
         s.parentNode.removeChild(s);
+        l.parentNode.insertBefore(t, l);
         l.parentNode.removeChild(l);
         
-        document.getElementById("uname").innerHTML = "Logged in as: " + read_cookie(user);
+        
+        document.getElementById("uname").innerHTML = "Logged in as: " + localStorage.getItem(user);
     }   
 };
-
-function bake_cookie(name, value) {
-  var cookie = [name, '=', JSON.stringify(value), '; domain=.', window.location.host.toString(), '; path=/;'].join('');
-  document.cookie = cookie;
-}
-
-function read_cookie(name) {
- var result = document.cookie.match(new RegExp(name + '=([^;]+)'));
- result && (result = JSON.parse(result[1]));
- return result;
-}
-
-function delete_cookie(name) {
-  document.cookie = [name, '=; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; domain=.', window.location.host.toString()].join('');
-}
 
 function doLogin()
 {
@@ -76,9 +69,10 @@ function doLogin()
 			return;
 		}
             
-            delete_cookie(user);
-            bake_cookie(user, login);
-                
+            localStorage.removeItem(user);
+            localStorage.setItem(user, login);
+            window.location.href = "leaderboard.html";  
+            return false;
 	}
 	catch(err)
 	{
