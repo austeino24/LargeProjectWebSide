@@ -6,22 +6,37 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/code.js"></script>
     
-
-    
 </head>
 
 <body>
     
     <script>
+        var leaders = [];
+        
         window.onload = function(){ 
             var header = document.getElementById("headers");
             var leaderboard = document.getElementById("leaderboard");
+            
+            var data;
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://64.37.54.24/getAllScores.php", false);
+            //xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+            
+            xhr.send();
+
+            var jsonObject = JSON.parse( xhr.responseText );
+            
+            for(var i = 1; i <= jsonObject.length; i++) 
+            {
+                var elem = jsonObject[i-1];    
+                leaders.push(new Leader(elem.username, elem.score, i, elem.id));
+            };
+            
+            loadInData();
         };
         
         var numBlocks = 1;
-        var leaders = [new Leader("Jad", 4453, "4/1/2018"), 
-            new Leader("James", 510, "3/10/2018"),
-            new Leader("Tyler", 210, "3/8/2018")];
         
         function createNewBlock(l) {
             var newBlock = document.createElement('div');
@@ -43,7 +58,7 @@
             
             var dateCol = document.createElement('div');
             dateCol.className = "col";
-            dateCol.innerHTML = l.date;
+            dateCol.innerHTML = l.rank;
             
             newBlock.appendChild(nameCol);
             newBlock.appendChild(scoreCol);
@@ -68,28 +83,32 @@
                     createNewBlock(leaders[i]);
         };
         
-        function Leader(name, score, date) {
+        function Leader(name, score, rank, id) {
             this.name = name;
             this.score = score;
-            this.date = date;
+            this.rank = rank;
+            this.id = id;
         };
     
     </script>
+    
+    <div class="navbar" id="nav">
+        <a href="index.html">Login</a>
+        <a href="signup.html">Signup</a>
+        <a href="leaderboard.html">Leaderboards</a>
+    </div>
     
     <div class="outer">
         <div class="middle">
             <div class="inner" id="leaderboardOverlay">
 
-                <h1 style="color: white;text-align: center">AR Defense Leaderboards for: Test</h1>
-                
-                <button onClick="loadInData()">Load in Test Data</button>
-                <button onClick="resetAllBlocks()">Delete errything</button>
+                <h1 style="color: white;text-align: center">AR Defense Leaderboards</h1>
                 
                 <div id="leaderboard">
                     <div id="headers" class="lbBlock">
                         <div class="col">Name</div>
                         <div class="scoreCol">Score</div>
-                        <div class="col">Date</div>
+                        <div class="col">Rank</div>
                     </div>
                 </div>
 

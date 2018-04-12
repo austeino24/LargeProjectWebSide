@@ -7,6 +7,7 @@ body {
 .outer {
     display: table;
     position: absolute;
+    top: 3%;
     height: 100%;
     width: 100%;
 }
@@ -25,18 +26,19 @@ body {
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 25px;
     width: 90vw;
-    height: 90vh;
+    height: 90%;
     margin: auto;
     padding: 20px;
     font-family: verdana;
     font-size: 150%;
+    overflow-y: scroll;
 }
 
 #leaderboardOverlay {
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 25px;
     width: 90vw;
-    height: 90vh;
+    height: 90%;
     margin: auto;
     padding: 20px;
     font-family: verdana;
@@ -44,6 +46,39 @@ body {
     /* box-sizing: border-box; */
     display: flex;
     flex-direction: column;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+
+.username {
+  float: right;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
 }
 
 #leaderboard {

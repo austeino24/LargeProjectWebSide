@@ -5,28 +5,26 @@
 <link rel="stylesheet" type="text/css" href="globalStyles.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/code.js"></script>
+<script type="text/javascript" src="http://www.myersdaily.org/joseph/javascript/md5.js"></script>
 
 <script>
-    window.onload = function(){ 
-        document.getElementById("leaderboardTest").onclick = function () {
-            location.href = "leaderboard.html";
-        };
-    };
-    
+
 </script>
 
 </head>
 
 <body>
+    <div class="navbar" id="nav">
+        <a href="index.html" id="l">Login</a>
+        <a href="signup.html" id="s">Signup</a>
+        <a href="leaderboard.html">Leaderboards</a>
+        <a class="username" id="uname"></a>
+    </div>
+    
     <div class="outer">
         <div class="middle">
             <div class="inner" id="overlay">
-                <div id="loggedInDiv" style="display:none; visibility:hidden;">
-                    Logged in as <span id="userName"></span><br />
-                    <button type="button" id="logoutButton" onclick="doLogout();"> Log Out </button>
-                </div>
                 <h1 style="color: white;text-align: center">AR Defense Login</h1>
-                <div> <button id="leaderboardTest">SimLoggedToLeaderboard</button> </div>
                 
                 <form onsubmit="doLogin()">
                     <label for="loginName">User ID</label>
